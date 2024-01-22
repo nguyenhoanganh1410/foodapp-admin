@@ -11,7 +11,8 @@ export const ROUTERS = {
   newLead: "new-lead",
   chapter: "/chapter",
   resetPassword: "/reset-password",
-  product: "/products"
+  product: "/products",
+  orders: '/orders'
 };
 
 //FORMAT
@@ -29,9 +30,12 @@ export const ERROR_CODE_FIREBASE = {
 };
 
 export const ERROR_SOMTHING_WENT_WRONG = 'Something went wrong please try again!'
-
 export const MESSAGE = {
   addedNewLead: 'Added new lead successfully!'
 }
-
-export const FIELD_REQUIRED = 'This field is required'
+export const FIELD_REQUIRED = 'Hãy nhập đầy đủ thông tin';
+export const MESSAGE_UNKNOWN_ERROR = 'An unknown error has occurred please refresh the page and try again.';
+export const STRING_EMPTY = '';
+export const CREATED_PRODUCT = 'Tạo mới sản phẩm thành công!';
+export const MESSAGE_DELETED = 'Đã xoá thành công!'
+export const MESSAGE_UPDATED = 'Đã cập nhật thành công!'

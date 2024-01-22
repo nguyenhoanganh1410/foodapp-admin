@@ -120,15 +120,15 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
               </li>
               <li>
                 <Link
-                  href='settings'
+                  href={ROUTERS.orders}
                   className={`relative h-[52px]  rounded-xl font-Inter text-blackLight flex items-center font-medium text-base`}
                 >
-                  {pathname.includes('settings') && (
+                  {pathname.includes('orders') && (
                     <div className='bg-[#35B0A4] rounded-xl opacity-20 w-full left-0 top-0 h-[52px] gap-2.5 py-2 px-4'></div>
                   )}
                  <div className='absolute flex z-10 left-3 justify-center items-center'>
-                    <div className={`${!pathname.includes('settings') ? 'bg-[#898989]' : 'bg-blueLight'} w-6 h-6 relative flex justify-between items-center rounded-full`}>
-                      <SettingsIcon active={pathname.includes('settings')} />
+                    <div className={`${!pathname.includes('orders') ? 'bg-[#898989]' : 'bg-blueLight'} w-6 h-6 relative flex justify-between items-center rounded-full`}>
+                      <SettingsIcon active={pathname.includes('orders')} />
                     </div>
                     <span className='ml-3'>Đơn hàng</span>
                   </div>
@@ -137,7 +137,7 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
                   </div>
                 </Link>
               </li>
-              <li>
+              {/* <li>
                 <Link
                   href='settings'
                   className={`relative h-[52px]  rounded-xl font-Inter text-blackLight flex items-center font-medium text-base`}
@@ -155,14 +155,14 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
                     <ArrowLeftIcon />
                   </div>
                 </Link>
-              </li>
+              </li> */}
             </ul>
           </div>
         </nav>
       </div>
       <div className='flex flex-col absolute px-6 bottom-6'>
-        <p className='text-base mb-2 font-medium text-blackLight font-Inter'>Need Support?</p>
-        <p className='text-sm font-normal text-[#898989]'>Contact The HUB Team <br /> <Link href="#" className='font-normal text-sm underline cursor-pointer font-Inter text-orangeLight'>Contact us</Link></p>
+        <p className='text-base mb-2 font-medium text-blackLight font-Inter'>Cần hỗ trợ?</p>
+        <p className='text-sm font-normal text-[#898989]'>Liên hệ The HUB <br /> <Link href="#" className='font-normal text-sm underline cursor-pointer font-Inter text-orangeLight'>Liên hệ chúng tôi</Link></p>
       </div>
     </aside>
   );

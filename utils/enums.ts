@@ -1,4 +1,6 @@
 export enum Tables {
+  products = 'products',
+  //
   users = "users",
   contacts = 'contacts',
   leads = 'leads',
@@ -6,4 +8,21 @@ export enum Tables {
   comments = "comments",
   replies = "replies",
   chapters = "chapters",
+  orders = "orders"
+}
+
+export enum StorageState {
+  stateChanged = 'state_changed',
+}
+
+export enum ProductStatus {
+  active = 'active',
+  notActive = 'notActive'
+}
+
+export enum OrderStatus {
+  newOrder = 'new-order',
+  pending = 'pending',
+  shipping = 'shipping',
+  completed = 'completed'
 }

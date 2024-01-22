@@ -11,11 +11,11 @@ const TableOne = ({ data }: IProps) => {
       <div className='mb-3 justify-between gap-4 flex'>
         <div>
           <h2 className='text-2xl font-Inter font-semibold text-blackLight'>
-            All Leads Referred
+            Danh sách khách hàng thân thiết
           </h2>
-          <h5 className='text-sm font-Inter font-normal text-blackLight mt-2'>
+          {/* <h5 className='text-sm font-Inter font-normal text-blackLight mt-2'>
             This month
-          </h5>
+          </h5> */}
         </div>
         <div>
           <span className='cursor-pointer'>
@@ -30,29 +30,29 @@ const TableOne = ({ data }: IProps) => {
           </div>
           <div className='p-2.5 text-center 2xl:p-5 col-span-3'>
             <h5 className='text-sm font-medium uppercase text-left xsm:text-base'>
-              Client Name
+              Tên Khách hàng
             </h5>
           </div>
           <div className='p-2.5 text-center 2xl:p-5 col-span-2 pl-0'>
             <h5 className='text-sm font-medium uppercase xsm:text-base'>
-              Status
+              Số điện thoại
             </h5>
           </div>
 
           <div className=' p-2.5 text-center sm:block col-span-2 2xl:p-5'>
             <h5 className='text-sm font-medium uppercase xsm:text-base'>
-              Payout Date
+              Email
             </h5>
           </div>
           <div className=' p-2.5 text-center sm:block 2xl:p-5 col-span-3'>
             <h5 className='text-sm font-medium uppercase xsm:text-base'>
-              Phone Number
+              Tổng số đơn
             </h5>
           </div>
         </div>
         {data?.length == 0 && (
           <p className='text-sm text-blackLight font-normal text-center py-2 capitalize'>
-            No data found!
+            Không tìm thấy dữ liệu!
           </p>
         )}
         <div className='max-h-40 overflow-auto'>

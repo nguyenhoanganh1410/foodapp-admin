@@ -1,3 +1,5 @@
+import { OrderStatus, ProductStatus } from "./enums";
+
 //data template
 export const DASHBOARD_TABLE_DATE_TEMPLATE = [
   {
@@ -36,3 +38,53 @@ export const DASHBOARD_MARKETING_DATA_TEMPLATE = [
     name: 'What are Fixed Indemnity Policies?',
   },
 ];
+
+export const PRODUCT_STATUS = [
+  {
+    id: ProductStatus.active,
+    label: 'Sẵn sàng',
+  },
+  {
+    id: ProductStatus.notActive,
+    label: 'Hết hàng',
+  },
+];
+
+export const PRODUCT_CATEGORY = [
+  {
+    id: 'burgers',
+    label: 'Bánh mì kẹp thịt',
+  },
+  {
+    id: 'sandwiches',
+    label: 'Bánh Sandwish',
+  },
+  {
+    id: 'drinks',
+    label: 'Đồ uống',
+  },
+  {
+    id: 'pizzas',
+    label: 'Bánh Pizza',
+  },
+];
+
+
+export const ORDER_STATUS_DATA = [
+  {
+    id: OrderStatus.newOrder,
+    label: 'Chờ xác nhận',
+  },
+  {
+    id: OrderStatus.pending,
+    label: 'Đang xử lý',
+  },
+  {
+    id: OrderStatus.shipping,
+    label: 'Đang giao hàng',
+  },
+  {
+    id: OrderStatus.completed,
+    label: 'Đã hoàn thành',
+  },
+]

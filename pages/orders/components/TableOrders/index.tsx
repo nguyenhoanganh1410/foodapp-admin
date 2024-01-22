@@ -7,67 +7,99 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TablePagination from '@mui/material/TablePagination';
 import TableRow from '@mui/material/TableRow';
-import { IProduct } from '@/utils/types';
+import { IOrder, IProduct } from '@/utils/types';
 import { formatVND } from '@/utils';
-import ModelAddProduct from '../ModelAddProduct';
 import { STRING_EMPTY } from '@/constants';
+import { OrderStatus } from '@/utils/enums';
+import ModelUpdateOrder from '../ModelUpdateOrder';
 
 interface Column {
-  id: 'name' | 'price' | 'status' | 'category' | 'desc';
+  id:
+    | 'id'
+    | 'email'
+    | 'fullName'
+    | 'payment'
+    | 'phone'
+    | 'status'
+    | 'address'
+    | 'total'
+    | 'createdAt';
   label: string;
   minWidth?: number;
   align?: 'right';
   format?: (value: number) => string;
+  convertStatus?: (value: string) => string;
 }
 
 const columns: readonly Column[] = [
-  { id: 'name', label: 'Tên SP', minWidth: 170 },
+  { id: 'id', label: 'Mã đơn hàng', minWidth: 170 },
   {
-    id: 'price',
-    label: 'Giá SP',
-    minWidth: 100,
-    format: (value: any) => formatVND(value),
-  },
-  {
-    id: 'status',
-    label: 'Trạng Thái',
+    id: 'fullName',
+    label: 'Khách hàng',
     minWidth: 170,
     // align: 'right',
     // format: (value: number) => value.toLocaleString('en-US'),
   },
   {
-    id: 'category',
-    label: 'Nhóm',
+    id: 'address',
+    label: 'Địa chỉ',
     minWidth: 170,
     // align: '',
     // format: (value: number) => value.toLocaleString('en-US'),
   },
   {
-    id: 'desc',
-    label: 'Miêu tả',
+    id: 'phone',
+    label: 'Số điện thoại',
     minWidth: 170,
     // align: 'right',
     // format: (value: number) => value.toFixed(2),
   },
+  {
+    id: 'total',
+    label: 'Tổng tiền',
+    minWidth: 170,
+    format: (value: any) => formatVND(value),
+    // align: 'right',
+    // format: (value: number) => value.toFixed(2),
+  },
+  {
+    id: 'status',
+    label: 'Trạng thái',
+    minWidth: 170,
+    convertStatus: (value: string) => {
+      if (value === OrderStatus.newOrder) return 'Chờ xác nhận';
+      else if (value === OrderStatus.shipping) return 'Đang giao';
+      else if (value === OrderStatus.pending) return 'Đang xử lý';
+      else if (value === OrderStatus.completed) return 'Hoàn thành';
+      return 'hoàn thành';
+    },
+  },
+  {
+    id: 'createdAt',
+    label: 'Ngày đặt',
+    minWidth: 170,
+  },
 ];
 
 interface IProps {
-  products: IProduct[];
+  orders: IOrder[];
 }
-const TableProducts = ({ products }: IProps) => {
+const TableOrders = ({ orders }: IProps) => {
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(10);
   const [showModelUpdate, setShowModelUpdate] = React.useState<boolean>(false);
-  const [currentProduct, setCurrentProduct] = React.useState<IProduct>();
+  const [currentProduct, setCurrentProduct] = React.useState<IOrder>();
 
   const onCloseModelUpdate = React.useCallback(() => {
     setShowModelUpdate(false);
   }, []);
 
-  const onClickRow = React.useCallback((product: IProduct) => {
+  const onClickRow = React.useCallback((product: IOrder) => {
     setShowModelUpdate(true);
     setCurrentProduct(product);
   }, []);
+
+  const getStatus = React.useMemo(() => {}, []);
 
   const handleChangePage = (event: unknown, newPage: number) => {
     setPage(newPage);
@@ -99,7 +131,7 @@ const TableProducts = ({ products }: IProps) => {
             </TableRow>
           </TableHead>
           <TableBody>
-            {products
+            {orders
               .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
               .map((product) => {
                 return (
@@ -120,6 +152,8 @@ const TableProducts = ({ products }: IProps) => {
                         >
                           {column.format && typeof value === 'number'
                             ? column.format(value as any)
+                            : column.convertStatus
+                            ? column.convertStatus(value as string)
                             : value}
                         </TableCell>
                       );
@@ -133,15 +167,19 @@ const TableProducts = ({ products }: IProps) => {
       <TablePagination
         rowsPerPageOptions={[10, 25, 100]}
         component='div'
-        count={products.length}
+        count={orders.length}
         rowsPerPage={rowsPerPage}
         page={page}
         onPageChange={handleChangePage}
         onRowsPerPageChange={handleChangeRowsPerPage}
       />
-      <ModelAddProduct product={currentProduct} open={showModelUpdate} onClose={onCloseModelUpdate}/>
+      <ModelUpdateOrder
+        order={currentProduct}
+        open={showModelUpdate}
+        onClose={onCloseModelUpdate}
+      />
     </Paper>
   );
 };
 
-export default TableProducts;
+export default TableOrders;
